@@ -112,6 +112,37 @@ function cockroachSpeed(s) {
 
 //! 7kyu
 
+// Create a Function that takes one parameter and returns its square root rounded to 5 decimal places. You are not allowed to use the Math.sqrt() or the Math.pow() methods.
+// Trailing zeros should be left out. For example:
+// squareRoot(39) // => 6.245;
+// rather than
+// squareRoot(39) // => 6.24500;
+
+function squareRoot(x) {
+  //the square root of a number is the same as that number ^ (1/2)
+  return parseFloat(x ** 0.5);
+}
+
+// An isogram is a word that has no repeating letters, consecutive or non-consecutive. Implement a function that determines whether a string that contains only letters is an isogram. Assume the empty string is an isogram. Ignore letter case.
+// isIsogram("Dermatoglyphics") == true
+// isIsogram("aba") == false
+// isIsogram("moOse") == false // -- ignore letter case
+
+function isIsogram(str) {
+  //set string to lower case
+  const lcStr = str.toLowerCase();
+  //turn string to an array which elements are their characters
+  const splitStr = lcStr.split("");
+
+  // check if the given "value" at "index" is actually first encountered at this "index" position within a string ("self")
+  const isUnique = function (value, index, self) {
+    return self.indexOf(value) === index;
+  };
+
+  // since an isogram string contains no duplicate, it must have the same length as splitStr.
+  return splitStr.filter(isUnique).length == str.length;
+}
+
 // The Western Suburbs Croquet Club has two categories of membership, Senior and Open. They would like your help with an application form that will tell prospective members which category they will be placed.
 // To be a senior, a member must be at least 55 years old and have a handicap greater than 7. In this croquet club, handicaps range from -2 to +26; the better the player the lower the handicap.
 // Input
@@ -129,4 +160,68 @@ function openOrSenior(data) {
   return data.map(([age, handicap]) =>
     age > 54 && handicap > 7 ? "Senior" : "Open"
   );
+}
+
+// Write a function named sumDigits which takes a number as input and returns the sum of the absolute value of each of the number's decimal digits. For example:
+//   sumDigits(10);  // Returns 1
+//   sumDigits(99);  // Returns 18
+//   sumDigits(-32); // Returns 5
+// Let's assume that all numbers in the input will be integer values.
+
+function sumDigits(number) {
+  // Turn number into absolute value, turn the number into a string and make an array which elements are the characters in the string
+  const values = String(Math.abs(number)).split("");
+  //collector to hold math result
+  let product = null;
+  //for each value, add the value to the product and turn it into a number
+  for (let i = 0; i < values.length; i++) {
+    product = product + Number(values[i]);
+  }
+  //return the product
+  return product;
+}
+
+// Your team is writing a fancy new text editor and you've been tasked with implementing the line numbering.
+// Write a function which takes a list of strings and returns each line prepended by the correct number.
+// The numbering starts at 1. The format is n: string. Notice the colon and space in between.
+// Examples:
+// number([]) // => []
+// number(["a", "b", "c"]) // => ["1: a", "2: b", "3: c"]
+
+function number(array) {
+  return array.map((item, i) => `${i + 1}: ${item}`);
+}
+
+// Task:
+// Given a list of integers, determine whether the sum of its elements is odd or even.
+// Give your answer as a string matching "odd" or "even".
+// If the input array is empty consider it as: [0] (array with a zero).
+// Examples:
+// Input: [0]
+// Output: "even"
+// Input: [0, 1, 4]
+// Output: "odd"
+// Input: [0, -1, -5]
+// Output: "even"
+// Have fun!
+
+function oddOrEven(array) {
+  //a is the accumulator and b, the current value. the first 0 is the value at which the reducing starts
+  return array.reduce((a, b) => a + b, 0) % 2 === 0 ? "even" : "odd";
+}
+
+// Welcome. In this kata, you are asked to square every digit of a number and concatenate them.
+// For example, if we run 9119 through the function, 811181 will come out, because 92 is 81 and 12 is 1.
+// Note: The function accepts an integer and returns an integer
+
+function squareDigits(num) {
+  const array = num
+    .toString() //turn number into a string
+    .split("") //split string
+    .map((int) => {
+      const i = parseInt(int); //turn every string into an integer
+      return i * i;
+    });
+
+  return parseInt(array.join("")); //turn the elements in the array to a string and that string to an integer
 }
