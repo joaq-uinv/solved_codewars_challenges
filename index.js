@@ -225,3 +225,96 @@ function squareDigits(num) {
 
   return parseInt(array.join("")); //turn the elements in the array to a string and that string to an integer
 }
+
+// Count the number of divisors of a positive integer n.
+// Random tests go up to n = 500000.
+// Examples
+// divisors(4)  = 3  // 1, 2, 4
+// divisors(5)  = 2  // 1, 5
+// divisors(12) = 6  // 1, 2, 3, 4, 6, 12
+// divisors(30) = 8  // 1, 2, 3, 5, 6, 10, 15, 30
+
+function getDivisorsCnt(n) {
+  //collector to see how many divisors n has
+  let totalDivisors = 0;
+
+  for (let i = 1; i <= n; i++) {
+    if (n % i == 0) {
+      //if n is divisible by i, add the total number of divisors by 1
+      totalDivisors++;
+    }
+  }
+
+  return totalDivisors;
+}
+
+// Complete the solution so that it returns true if the first argument(string) passed in ends with the 2nd argument (also a string).
+// Examples:
+// solution('abc', 'bc') // returns true
+// solution('abc', 'd') // returns false
+
+function solution(str, ending) {
+  return str.endsWith(ending);
+}
+
+// Implement a function that adds two numbers together and returns their sum in binary. The conversion can be done before, or after the addition.
+
+// The binary number returned should be a string.
+
+// Examples:
+
+// add_binary(1, 1) == "10" (1 + 1 = 2 in decimal or 10 in binary)
+// add_binary(5, 9) == "1110" (5 + 9 = 14 in decimal or 1110 in binary)
+
+function addBinary(a, b) {
+  return (a + b).toString(2);
+}
+
+// Instructions
+// Write a function that takes a single string (word) as argument. The function must return an ordered list containing the indexes of all capital letters in the string.
+// Example
+// Test.assertSimilar( capitals('CodEWaRs'), [0,3,4,6] );
+
+const capitals = (word) =>
+  // split word into an array
+  word
+    .split("")
+    //make a new array that gets the index of the capital letter
+    .map((char, i) => (char === char.toUpperCase() ? i : false))
+    // filter through each item in the new array and return a new array of just the index values
+    .filter((num) => Number.isInteger(num));
+
+//Return the number (count) of vowels in the given string.
+// We will consider a, e, i, o, u as vowels for this Kata (but not y).
+// The input string will only consist of lower case letters and/or spaces.
+
+const countVowels = (str) =>
+  //Convert the string to an array
+  Array.from(str)
+    //filter the array to contain only vowels and get how many of them are there
+    .filter((char) => "aeiou".includes(char)).length;
+
+//Check to see if a string has the same amount of 'x's and 'o's. The method must return a boolean and be case insensitive. The string can contain any char.
+// Examples input/output:
+// XO("ooxx") => true
+// XO("xooxx") => false
+// XO("ooxXm") => true
+// XO("zpzpzpp") => true // when no 'x' and 'o' is present should return true
+// XO("zzoo") => false
+
+function XO(str) {
+  //collectors
+  let x = 0;
+  let o = 0;
+
+  for (let i = 0; i < str.length; i++) {
+    //if a character in the string passed as a param is an x or an o, increase the counters declared before by 1
+    if (str[i].toLowerCase() === "x") {
+      x++;
+    } else if (str[i].toLowerCase() === "o") {
+      o++;
+    }
+  }
+  //if x = o, return true
+  return x === o;
+}
