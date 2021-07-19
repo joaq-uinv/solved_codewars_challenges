@@ -110,6 +110,86 @@ function cockroachSpeed(s) {
   return Math.floor((s * centimetersInKilometers) / secsInHour);
 }
 
+// Complete the solution so that it reverses the string passed into it.
+// 'world'  =>  'dlrow'
+
+function solution(str) {
+  return str
+    .split("") //make an array which elements are the characters in the string
+    .reverse() //reverse the order of the elements in the array
+    .join(""); //join the elements of the array and return a string
+}
+
+// It's pretty straightforward. Your goal is to create a function that removes the first and last characters of a string. You're given one parameter, the original string. You don't have to worry with strings with less than two characters.
+
+function removeChar(str) {
+  //split string
+  const splitStr = str.split("");
+  //remove the first and the last element in the array
+  const slicedArr = splitStr.slice(1, splitStr.length - 1);
+  //join elements in the array to form a string and return it
+  return slicedArr.join("");
+}
+
+// You get an array of numbers, return the sum of all of the positives ones.
+// Example [1,-4,7,12] => 1 + 7 + 12 = 20
+// Note: if there is nothing to sum, the sum is default to 0.
+
+function positiveSum(arr) {
+  return arr
+    .filter((num) => num > 0) //create an array which elements are positive numbers
+    .reduce((accumulator, currentValue) => accumulator + currentValue, 0); //sum the numbers in the array
+}
+
+// Description:
+// Consider an array/list of sheep where some sheep may be missing from their place. We need a function that counts the number of sheep present in the array (true means present).
+// For example,
+// [true,  true,  true,  false,
+//   true,  true,  true,  true ,
+//   true,  false, true,  false,
+//   true,  false, false, true ,
+//   true,  true,  true,  true ,
+//   false, false, true,  true]
+// The correct answer would be 17.
+// Hint: Don't forget to check for bad values like null/undefined
+
+const countSheeps = (arr) => arr.filter((sheep) => sheep).length; //return an array with only true elements and count them
+
+// Simple, remove the spaces from the string, then return the resultant string.
+
+function noSpace(x) {
+  return x.split(" ").join(""); //make an array which elements are the characters in the string not separated by an empty space and join them to form a string
+}
+
+// Summation
+// Write a program that finds the summation of every number from 1 to num. The number will always be a positive integer greater than 0.
+// For example:
+// summation(2) -> 3
+// 1 + 2
+// summation(8) -> 36
+// 1 + 2 + 3 + 4 + 5 + 6 + 7 + 8
+
+const summation = (num) => {
+  //collector array
+  let nums = [];
+  //fill collector array with all the number from 0 to num
+  for (let i = 0; i <= num; i++) {
+    nums.push(i);
+  }
+  //sum the numbers in the collector array
+  return nums.reduce(
+    (accumulator, currentValue) => accumulator + currentValue,
+    0 //initial value
+  );
+};
+
+// Given an array of integers, return a new array with each value doubled.
+// For example:
+// [1, 2, 3] --> [2, 4, 6]
+// For the beginner, try to use the map method - it comes in very handy quite a lot so is a good one to know.
+
+const maps = (x) => x.map((num) => num * 2);
+
 //! 7kyu
 
 // Create a Function that takes one parameter and returns its square root rounded to 5 decimal places. You are not allowed to use the Math.sqrt() or the Math.pow() methods.
