@@ -267,3 +267,99 @@ function SeriesSum(n) {
   //round answer to two decimals
   return sum.toFixed(2);
 }
+
+// Create a function that returns the name of the winner in a fight between two fighters.
+// Each fighter takes turns attacking the other and whoever kills the other first is victorious. Death is defined as having health <= 0.
+// Each fighter will be a Fighter object/instance. See the Fighter class below in your chosen language.
+// Both health and damagePerAttack (damage_per_attack for python) will be integers larger than 0. You can mutate the Fighter objects.
+// Example:
+// function Fighter(name, health, damagePerAttack) {
+//         this.name = name;
+//         this.health = health;
+//         this.damagePerAttack = damagePerAttack;
+//         this.toString = function() { return this.name; }
+// }Create a function that returns the name of the winner in a fight between two fighters.
+// Each fighter takes turns attacking the other and whoever kills the other first is victorious. Death is defined as having health <= 0.
+// Each fighter will be a Fighter object/instance. See the Fighter class below in your chosen language.
+// Both health and damagePerAttack (damage_per_attack for python) will be integers larger than 0. You can mutate the Fighter objects.
+// Example:
+// function Fighter(name, health, damagePerAttack) {
+//         this.name = name;
+//         this.health = health;
+//         this.damagePerAttack = damagePerAttack;
+//         this.toString = function() { return this.name; }
+// }
+
+function declareWinner(fighter1, fighter2, firstAttacker) {
+  const a = [fighter1, fighter2].find((v) => v.name === firstAttacker);
+  const b = [fighter1, fighter2].find((v) => v.name !== firstAttacker);
+
+  return Math.ceil(b.health / a.damagePerAttack) <=
+    Math.ceil(a.health / b.damagePerAttack)
+    ? a.name
+    : b.name;
+}
+
+// Create a function that returns the sum of the two lowest positive numbers given an array of minimum 4 positive integers. No floats or non-positive integers will be passed.
+// For example, when an array is passed like [19, 5, 42, 2, 77], the output should be 7.
+// [10, 343445353, 3453445, 3453545353453] should return 3453455.
+
+function sumTwoSmallestNumbers(numbers) {
+  return numbers
+    .sort((a, b) => a - b) //sort array in ascending order
+    .slice(0, 2) //create new array with the first two elements of the sorted array
+    .reduce((a, b) => a + b, 0); //sum both elements
+}
+
+// Story
+// Ben has a very simple idea to make some profit: he buys something and sells it again. Of course, this wouldn't give him any profit at all if he was simply to buy and sell it at the same price. Instead, he's going to buy it for the lowest possible price and sell it at the highest.
+// Task
+// Write a function that returns both the minimum and maximum number of the given list/array.
+// Examples
+// minMax([1,2,3,4,5])   == [1,5]
+// minMax([2334454,5])   == [5, 2334454]
+// minMax([1])           == [1, 1]
+// Remarks
+// All arrays or lists will always have at least one element, so you don't need to check the length. Also, your function will always get an array or a list, you don't have to check for null, undefined or similar.
+
+function minMax(arr) {
+  return [Math.min(...arr), Math.max(...arr)];
+}
+
+// In this little assignment you are given a string of space separated numbers, and have to return the highest and lowest number.
+// Example:
+// highAndLow("1 2 3 4 5");  // return "5 1"
+// highAndLow("1 2 -3 4 5"); // return "5 -3"
+// highAndLow("1 9 3 4 -5"); // return "9 -5"
+// Notes:
+// All numbers are valid Int32, no need to validate them.
+// There will always be at least one number in the input string.
+// Output string must be two numbers separated by a single space, and highest number is first.
+
+const highAndLow = (numbers) => {
+  //str to array of strs without the spaces between them
+  const splitStr = numbers.split(" ");
+  //find max and min
+  const maxMinNums = [Math.max(...splitStr), Math.min(...splitStr)];
+  //join elems to form a str separated by a space and return it
+  return maxMinNums.join(" ");
+};
+
+// Take 2 strings s1 and s2 including only letters from ato z. Return a new sorted string, the longest possible, containing distinct letters - each taken only once - coming from s1 or s2.
+// Examples:
+// a = "xyaabbbccccdefww"
+// b = "xxxxyyyyabklmopq"
+// longest(a, b) -> "abcdefklmopqwxy"
+// a = "abcdefghijklmnopqrstuvwxyz"
+// longest(a, a) -> "abcdefghijklmnopqrstuvwxyz"
+
+function longest(s1, s2) {
+  //concatenate strings
+  const joined = `${s1}${s2}`;
+  //make the characters in the string the elements of an array and sort them in alphabetical order
+  const splitSortedStr = joined.split("").sort();
+  //remove duplicate values and join the remaining elements to form a string
+  return splitSortedStr
+    .filter((char, i) => splitSortedStr.indexOf(char) === i)
+    .join("");
+}
