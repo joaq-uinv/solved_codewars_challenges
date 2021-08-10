@@ -363,3 +363,80 @@ function longest(s1, s2) {
     .filter((char, i) => splitSortedStr.indexOf(char) === i)
     .join("");
 }
+
+// Your task is to write function findSum.
+// Upto and including n, this function will return the sum of all multiples of 3 and 5.
+// For example:
+// findSum(5) should return 8 (3 + 5)
+// findSum(10) should return 33 (3 + 5 + 6 + 9 + 10)
+
+function findSum(n) {
+  //collector value
+  let sum = 0;
+  //loop thorugh integers and see if they are multiples of 3 or 5
+  for (let i = 0; i <= n; i++) {
+    if (i % 3 === 0 || i % 5 === 0) {
+      sum += i;
+    }
+  }
+  return sum;
+}
+
+// In this Kata, you will be given a string that may have mixed uppercase and lowercase letters and your task is to convert that string to either lowercase only or uppercase only based on:
+
+// make as few changes as possible.
+// if the string contains equal number of uppercase and lowercase letters, convert the string to lowercase.
+// For example:
+
+// solve("coDe") = "code". Lowercase characters > uppercase. Change only the "D" to lowercase.
+// solve("CODe") = "CODE". Uppercase characters > lowecase. Change only the "e" to uppercase.
+// solve("coDE") = "code". Upper == lowercase. Change all to lowercase.
+// More examples in test cases. Good luck!
+
+function solve(str) {
+  //collector arrays
+  let lowerCaseChars = [];
+  let upperCaseChars = [];
+  //loop throgh each character in the array and see whether they are lower or uppercase
+  for (let i = 0; i < str.length; i++) {
+    const char = str.charAt(i);
+
+    if (char === char.toLowerCase()) {
+      lowerCaseChars.push(char);
+    }
+
+    if (char === char.toUpperCase()) {
+      upperCaseChars.push(char);
+    }
+  }
+
+  if (
+    lowerCaseChars.length > upperCaseChars.length ||
+    lowerCaseChars.length === upperCaseChars.length
+  ) {
+    return str.toLowerCase();
+  }
+
+  if (lowerCaseChars.length < upperCaseChars.length) {
+    return str.toUpperCase();
+  }
+}
+
+// In mathematics, the factorial of a non-negative integer n, denoted by n!, is the product of all positive integers less than or equal to n. For example: 5! = 5 * 4 * 3 * 2 * 1 = 120. By convention the value of 0! is 1.
+// Write a function to calculate factorial for a given input. If input is below 0 or above 12 throw an exception of type ArgumentOutOfRangeException (C#) or IllegalArgumentException (Java) or RangeException (PHP) or throw a RangeError (JavaScript) or ValueError (Python) or return -1 (C).
+// More details about factorial can be found here.
+
+function factorial(n) {
+  if (n < 0 || n > 12) {
+    throw RangeError;
+  }
+  //collector number
+  let result = 1;
+
+  //loop through integers and multiply each one by the collector
+  for (let i = 1; i <= n; i++) {
+    result *= i;
+  }
+
+  return result;
+}
